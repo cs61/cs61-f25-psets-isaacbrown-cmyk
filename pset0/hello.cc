@@ -2,4 +2,5 @@
 #include <cstdio>
 int main() {
     fprintf("hello, kitty")
+    exit(0)
 }
