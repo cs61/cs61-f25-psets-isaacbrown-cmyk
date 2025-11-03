@@ -7,6 +7,7 @@ int main() {
     unsigned long bytes = 0;
     int output;
     bool in_a_space = true;
+    bool new_space;
     while (!feof(stdin)) {
         output = fgetc(stdin);
         fprintf(stdout, "Current output: %d\n", output);
