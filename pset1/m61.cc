@@ -7,7 +7,7 @@
 #include <cassert>
 #include <sys/mman.h>
 
-static unsigned long long ntotal = 0;
+static m61_statistics gstats = {0,0,0,0,0,0,0,0};
 struct m61_memory_buffer {
     char* buffer;
     size_t pos = 0;
@@ -46,7 +46,7 @@ m61_memory_buffer::~m61_memory_buffer() {
 void* m61_malloc(size_t sz, const char* file, int line) {
     (void) file, (void) line;   // avoid uninitialized variable warnings
     // Your code here.
-    ++ntotal;
+    ++gstats.ntotal;
     if (default_buffer.pos + sz > default_buffer.size) {
         // Not enough space left in default buffer for allocation
         return nullptr;
@@ -95,10 +95,7 @@ void* m61_calloc(size_t count, size_t sz, const char* file, int line) {
 m61_statistics m61_get_statistics() {
     // Your code here.
     // The handout code sets all statistics to enormous numbers.
-    m61_statistics stats;
-    memset(&stats, 0, sizeof(m61_statistics));
-    stats.ntotal = ntotal;
-    return stats;
+    return gstats;
 }
 
 
