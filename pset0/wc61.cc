@@ -5,7 +5,7 @@ int main() {
     unsigned long words = 0;
     unsigned long lines = 0;
     unsigned long bytes = 0;
-    int output = 0;
+    int output;
     while (!feof(stdin)) {
         output = fgetc(stdin);
         fprintf(stdout, "Current output: %d\n", output);
