@@ -7,7 +7,16 @@
 #include <cassert>
 #include <sys/mman.h>
 
-static m61_statistics gstats = {0,0,0,0,0,0,0,0};
+static m61_statistics gstats = {
+    .nactive = 0,
+    .active_size = 0,
+    .ntotal = 0,
+    .total_size = 0,
+    .nfail = 0,
+    .fail_size = 0,
+    .heap_min = 0,
+    .heap_max = 0
+    };
 struct m61_memory_buffer {
     char* buffer;
     size_t pos = 0;
