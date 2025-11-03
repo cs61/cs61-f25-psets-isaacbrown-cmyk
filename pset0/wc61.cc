@@ -5,8 +5,8 @@ int main() {
     unsigned long words = 0;
     unsigned long lines = 0;
     unsigned long bytes = 0;
-    int output = "";
-    int newline = "\n"  
+    int output = 0;
+    int newline = '\n';
     while (feof(stdin) != EOF) {
         output = fgetc(stdin)
         if(isspace(output)){
