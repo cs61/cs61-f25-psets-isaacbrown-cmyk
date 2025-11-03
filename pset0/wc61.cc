@@ -18,7 +18,7 @@ int main() {
         }
         if(isspace(output)){
             words = words + 1;
-        } else if(output == newline) {
+        } else if(output == '\n') {
             lines = lines + 1;
         }
         bytes = bytes + 1;
