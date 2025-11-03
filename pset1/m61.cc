@@ -85,7 +85,7 @@ void m61_free(void* ptr, const char* file, int line) {
     (void) ptr, (void) file, (void) line;
     // Your code here. The handout code does nothing!
     fprintf(stdout, ptr, "\n");
-    fprintf(stdout, "Number of active allocations: %d\n", gstats.nactive);  
+    fprintf(stdout, "Number of active allocations: %lld\n", gstats.nactive);  
     if(ptr != nullptr && gstats.nactive > 0){
         gstats.nactive = gstats.nactive - 1;
     }
