@@ -6,15 +6,18 @@ int main() {
     unsigned long lines = 0;
     unsigned long bytes = 0;
     int output;
+    bool in_a_space = true;
     while (!feof(stdin)) {
         output = fgetc(stdin);
         fprintf(stdout, "Current output: %d\n", output);
         if(output == EOF){
             break;
         }
-        if(isspace((unsigned char)output)){
+        new_space = isspace((unsigned char)output);
+        if(in_a_space && !new_space){
             words = words + 1;
         }
+        in_a_space = new_space;
         if(output == '\n') {
             lines = lines + 1;
         }
