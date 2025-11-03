@@ -68,7 +68,7 @@ void* m61_malloc(size_t sz, const char* file, int line) {
         return nullptr;
     }
     ++gstats.nactive;
-    void* ptr = alignas(16) &default_buffer.buffer[default_buffer.pos];
+    void* ptr = alignas(std::max_align_t) &default_buffer.buffer[default_buffer.pos];
     default_buffer.pos += sz;
     return ptr;
 }
