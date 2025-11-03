@@ -9,6 +9,9 @@ int main() {
     int newline = '\n';
     while (!feof(stdin)) {
         output = fgetc(stdin);
+        if(output == -1){
+            break;
+        }
         if(isspace(output)){
             words = words + 1;
         } else if(output == newline) {
