@@ -1,5 +1,5 @@
 #include <cstdlib>
 #include <cstdio>
-int main() {
+void main() {
     fprintf("hello, kitty")
 }
