@@ -6,7 +6,7 @@ char* mystrstr(const char* s1, const char* s2) {
     // Your code here
     s1 = "bee";
     s2 = "boo";
-    char* output = "boo"
+    char* output = "boo";
     return output;
 }
 
