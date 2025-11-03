@@ -9,9 +9,9 @@ int main() {
     while (output != EOF) {
         output = fgetc(stdin)
         if(isspace(output)){
-            words = words + 1
+            words = words + 1;
         } else if(output == "\n") {
-            lines = lines + 1
+            lines = lines + 1;
         }
         bytes = bytes + 1;
     }
