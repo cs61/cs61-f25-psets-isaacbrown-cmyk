@@ -9,7 +9,7 @@ int main() {
     while (!feof(stdin)) {
         output = fgetc(stdin);
         fprintf(stdout, "Current output: %d\n", output);
-        if(feof(stdin)){
+        if(output == EOF){
             break;
         }
         if(isspace(output)){
