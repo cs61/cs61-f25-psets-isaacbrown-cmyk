@@ -84,7 +84,7 @@ void m61_free(void* ptr, const char* file, int line) {
     (void) ptr, (void) file, (void) line;
     // Your code here. The handout code does nothing!
     if(ptr != nullptr){
-        --gstats.nactive;
+        gstats.nactive = gstats.nactive - 1;
     }
 }
 
