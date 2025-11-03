@@ -6,7 +6,6 @@ int main() {
     unsigned long lines = 0;
     unsigned long bytes = 0;
     int output = 0;
-    int newline = '\n';
     while (!feof(stdin)) {
         output = fgetc(stdin);
         //fprintf(stdout, "Current output: %d\n", output);
