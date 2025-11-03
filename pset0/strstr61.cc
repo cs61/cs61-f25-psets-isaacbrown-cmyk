@@ -4,10 +4,19 @@
 
 char* mystrstr(const char* s1, const char* s2) {
     // Your code here
-    s1 = "bee";
-    s2 = "boo";
-    char* output = "boo";
-    return output;
+    for (size_t i = 0; s1[i] != 0; i++){
+        size_t j = 0;
+        while(s2[j] != 0 && s2[j] == s1[i+j]){
+            ++j;
+        }
+        if (!s2[j]){
+            return (char*) &s1[i];
+        }
+    }
+    if (!s2[0]){
+        return (char*) s1;
+    }
+    return nullptr;
 }
 
 int main(int argc, char* argv[]) {
