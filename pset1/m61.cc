@@ -84,6 +84,8 @@ void m61_free(void* ptr, const char* file, int line) {
     // avoid uninitialized variable warnings
     (void) ptr, (void) file, (void) line;
     // Your code here. The handout code does nothing!
+    fprintf(stdout, ptr, "\n");
+    fprintf("Number of active allocations: %d\n", gstats.nactive);  
     if(ptr != nullptr && gstats.nactive > 0){
         gstats.nactive = gstats.nactive - 1;
     }
