@@ -9,7 +9,7 @@ int main() {
     int newline = '\n';
     while (!feof(stdin)) {
         output = fgetc(stdin);
-        fprintf(stdout, "Current output: %d\n", output);
+        //fprintf(stdout, "Current output: %d\n", output);
         if(feof(stdin)){
             if(words != 0){
                 lines = lines + 1;
