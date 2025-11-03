@@ -6,8 +6,11 @@
 
 int main() {
     void* a = m61_malloc(0);
+    m61_print_statistics();
     m61_free(a);
+    m61_print_statistics();
     m61_free(nullptr);
+    m61_print_statistics();
     m61_print_statistics();
 }
 
