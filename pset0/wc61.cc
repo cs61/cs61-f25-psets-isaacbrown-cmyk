@@ -23,6 +23,6 @@ int main() {
         }
         bytes = bytes + 1;
     }
-    fprintf(stdout, "%lu %lu %lu\n", words, lines, bytes);
+    fprintf(stdout, "%lu %lu %lu\n", lines, words, bytes);
     exit(0);
 }
