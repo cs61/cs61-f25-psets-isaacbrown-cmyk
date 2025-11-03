@@ -9,12 +9,12 @@ int main() {
     while (output != EOF) {
         output = fgetc(stdin)
         if(isspace(output)){
-            words += 1
+            words = words + 1
         } else if(output == "\n") {
-            lines += 1
+            lines = lines + 1
         }
-        i = i + 1;
+        bytes = bytes + 1;
     }
-    fprintf(stdout, "%d\n", i);
+    fprintf(stdout, "%d %d %d\n", words, lines, bytes);
     exit(0);
 }
