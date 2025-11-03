@@ -10,8 +10,10 @@ int main() {
     while (!feof(stdin)) {
         output = fgetc(stdin);
         fprintf(stdout, "Current output: %d\n", output);
-        if(output == -1){
-            lines = lines + 1;
+        if(feof(stdin)){
+            if(words != 0){
+                lines = lines + 1;
+            }
             break;
         }
         if(isspace(output)){
