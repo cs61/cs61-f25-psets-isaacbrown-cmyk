@@ -11,6 +11,7 @@ int main() {
         output = fgetc(stdin);
         fprintf(stdout, "Current output: %d\n", output);
         if(output == -1){
+            lines = lines + 1;
             break;
         }
         if(isspace(output)){
