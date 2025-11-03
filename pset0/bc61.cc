@@ -4,6 +4,6 @@ int main() {
     int i = 0;
     fgetc(stdin);
     i = i + 1;
-    fprintf(stdout, i)
+    fprintf(stdout, "Number of bytes: %c", i);
     exit(0);
 }
