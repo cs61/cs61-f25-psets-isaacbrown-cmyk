@@ -6,7 +6,7 @@ int main() {
     unsigned long lines = 0;
     unsigned long bytes = 0;
     char output = "";
-    while (output != EOF) {
+    while (feof(stdin) != EOF) {
         output = fgetc(stdin)
         if(isspace(output)){
             words = words + 1;
