@@ -8,7 +8,7 @@ int main() {
     int output = 0;
     int newline = '\n';
     while (feof(stdin) != EOF) {
-        output = fgetc(stdin)
+        output = fgetc(stdin);
         if(isspace(output)){
             words = words + 1;
         } else if(output == "\n") {
