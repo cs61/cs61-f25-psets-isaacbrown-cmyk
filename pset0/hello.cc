@@ -1,6 +1,6 @@
 #include <cstdlib>
 #include <cstdio>
 int main() {
-    fprintf("hello, kitty")
+    fprintf(stdout, "hello, kitty \n")
     exit(0)
 }
