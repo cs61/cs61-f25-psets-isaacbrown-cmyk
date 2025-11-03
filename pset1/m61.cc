@@ -7,7 +7,7 @@
 #include <cassert>
 #include <sys/mman.h>
 
-static unsigned long long n_total = 0;
+static unsigned long long ntotal = 0;
 struct m61_memory_buffer {
     char* buffer;
     size_t pos = 0;
