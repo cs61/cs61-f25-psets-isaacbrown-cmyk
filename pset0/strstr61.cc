@@ -4,8 +4,8 @@
 
 char* mystrstr(const char* s1, const char* s2) {
     // Your code here
-    s1 = "bee"
-    s2 = "boo"
+    s1 = "bee";
+    s2 = "boo";
     return s2[0];
 }
 
