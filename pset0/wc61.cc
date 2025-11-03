@@ -12,7 +12,7 @@ int main() {
         if(output == EOF){
             break;
         }
-        if(isspace(output)){
+        if(isspace((unsigned char)output)){
             words = words + 1;
         }
         if(output == '\n') {
