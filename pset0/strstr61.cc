@@ -3,10 +3,8 @@
 #include <cstdio>
 
 char* mystrstr(const char* s1, const char* s2) {
-    fprintf(stdout, s2[0])
     // Your code here
-
-    return nullptr;
+    return s2[0];
 }
 
 int main(int argc, char* argv[]) {
