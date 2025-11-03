@@ -9,7 +9,7 @@ int main() {
     int newline = '\n';
     while (!feof(stdin)) {
         output = fgetc(stdin);
-        fprintf(stdout, "Current output: %d", output);
+        fprintf(stdout, "Current output: %d\n", output);
         if(output == -1){
             break;
         }
