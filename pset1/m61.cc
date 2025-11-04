@@ -56,30 +56,6 @@ m61_memory_buffer::~m61_memory_buffer() {
 ///    return either `nullptr` or a pointer to a unique allocation.
 ///    The allocation request was made at source code location `file`:`line`.
 
-void* m61_malloc(size_t sz, const char* file, int line) {
-    (void) file, (void) line;   // avoid uninitialized variable warnings
-    // Your code here.
-    if(default_buffer.pos % sizeof(max_align_t) != 0){
-        default_buffer.pos = (default_buffer.pos + sizeof(max_align_t) - 1) & ~(sizeof(max_align_t) - 1);
-    }
-    void *ptr = m61_find_free_space(sz);
-    // Otherwise there is enough space; claim the next `sz` bytes
-    ++gstats.ntotal;
-    gstats.total_size += sz;
-    ++gstats.nactive;
-    void* ptr = &default_buffer.buffer[default_buffer.pos];
-    if(gstats.heap_min == 0 || (uintptr_t) ptr <= gstats.heap_min){
-        gstats.heap_min = (uintptr_t) ptr;
-    }
-    if(gstats.heap_max == 0 || (uintptr_t) ptr + sz >= gstats.heap_max){
-        gstats.heap_max = ((uintptr_t) ptr) + sz;
-    }
-    default_buffer.pos += sz;
-    active_sizes[ptr] = sz;
-    gstats.active_size = gstats.active_size + sz;
-    return ptr;
-}
-
 static void* m61_find_free_space(size_t sz) {
     if (default_buffer.pos + sz > default_buffer.size) {
         // Not enough space left in default buffer for allocation
@@ -105,6 +81,30 @@ static void* m61_find_free_space(size_t sz) {
         }
     }
     return nullptr;
+}
+
+void* m61_malloc(size_t sz, const char* file, int line) {
+    (void) file, (void) line;   // avoid uninitialized variable warnings
+    // Your code here.
+    if(default_buffer.pos % sizeof(max_align_t) != 0){
+        default_buffer.pos = (default_buffer.pos + sizeof(max_align_t) - 1) & ~(sizeof(max_align_t) - 1);
+    }
+    void *ptr = m61_find_free_space(sz);
+    // Otherwise there is enough space; claim the next `sz` bytes
+    ++gstats.ntotal;
+    gstats.total_size += sz;
+    ++gstats.nactive;
+    void* ptr = &default_buffer.buffer[default_buffer.pos];
+    if(gstats.heap_min == 0 || (uintptr_t) ptr <= gstats.heap_min){
+        gstats.heap_min = (uintptr_t) ptr;
+    }
+    if(gstats.heap_max == 0 || (uintptr_t) ptr + sz >= gstats.heap_max){
+        gstats.heap_max = ((uintptr_t) ptr) + sz;
+    }
+    default_buffer.pos += sz;
+    active_sizes[ptr] = sz;
+    gstats.active_size = gstats.active_size + sz;
+    return ptr;
 }
 
 
