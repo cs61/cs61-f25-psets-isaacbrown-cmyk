@@ -7,6 +7,7 @@
 #include <cassert>
 #include <sys/mman.h>
 #include <map>
+#include <iostream>
 
 static std::map<void*, size_t> active_sizes;
 static std::map<void*, size_t> freed_sizes;
