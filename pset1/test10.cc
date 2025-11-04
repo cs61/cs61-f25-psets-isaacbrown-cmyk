@@ -9,7 +9,7 @@ int main() {
     m61_statistics stat = m61_get_statistics();
     m61_print_statistics();
     fprintf(stdout, "Heap max: %ld, Heap min: %ld\n", stat.heap_max, stat.heap_min);
-    fprintf(stdout, "Current pointer position: %s\n", *p);
+    fprintf(stdout, "Current pointer value: %d\n", *p);
     assert((uintptr_t) p >= stat.heap_min);
     assert((uintptr_t) p + 9 <= stat.heap_max);
     m61_free(p);
