@@ -95,10 +95,6 @@ void* m61_malloc(size_t sz, const char* file, int line) {
     return ptr;
 }
 
-static void* m61_find_free_space(size_t sz) {
-    for()
-}
-
 
 /// m61_free(ptr, file, line)
 ///    Frees the memory allocation pointed to by `ptr`. If `ptr == nullptr`,
