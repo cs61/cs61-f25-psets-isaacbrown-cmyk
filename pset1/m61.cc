@@ -81,10 +81,10 @@ static void* m61_find_free_space(size_t sz) {
             //fprintf(stdout,"Reused memory!\n");
             return k;
         }
-        fprintf(stdout, "Memory block not big enough!\n");
-        std::cout << "Pointer: " << k << " Size of allocation: \n" << v << std::endl;
+        //fprintf(stdout, "Memory block not big enough!\n");
+        //std::cout << "Pointer: " << k << " Size of allocation: \n" << v << std::endl;
     }
-    fprintf(stdout,"No reusable memory found!\n");
+    //fprintf(stdout,"No reusable memory found!\n");
     return nullptr;
 }
 
@@ -123,7 +123,7 @@ void m61_free(void* ptr, const char* file, int line) {
     // avoid uninitialized variable warnings
     (void) ptr, (void) file, (void) line;
     // Your code here. The handout code does nothing!
-    fprintf(stdout, "Number of active allocations: %lld\n", gstats.nactive);  
+    //fprintf(stdout, "Number of active allocations: %lld\n", gstats.nactive);  
     if(ptr != nullptr && gstats.nactive > 0){
         gstats.nactive = gstats.nactive - 1;
     }
