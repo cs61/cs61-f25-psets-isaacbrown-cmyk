@@ -57,6 +57,7 @@ void* m61_malloc(size_t sz, const char* file, int line) {
     // Your code here.
     if (default_buffer.pos + sz > default_buffer.size) {
         // Not enough space left in default buffer for allocation
+        fprintf(stdout, "Not enough space left!\n");
         ++gstats.nfail;
         gstats.fail_size += sz;
         return nullptr;
@@ -65,6 +66,7 @@ void* m61_malloc(size_t sz, const char* file, int line) {
         return nullptr;
     }
     if(sz > default_buffer.size){
+        fprintf(stdout, "Size too big for buffer!\n");
         ++gstats.nfail;
         gstats.fail_size += sz;
         return nullptr;
