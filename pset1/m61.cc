@@ -59,6 +59,22 @@ m61_memory_buffer::~m61_memory_buffer() {
 void* m61_malloc(size_t sz, const char* file, int line) {
     (void) file, (void) line;   // avoid uninitialized variable warnings
     // Your code here.
+    if (default_buffer.pos + sz > default_buffer.size) {
+        // Not enough space left in default buffer for allocation
+        //fprintf(stdout, "Not enough space left!\n");
+        ++gstats.nfail;
+        gstats.fail_size += sz;
+        return nullptr;
+    }
+    if(sz == 0){
+        return nullptr;
+    }
+    if(sz > default_buffer.size){
+        //fprintf(stdout, "Size too big for buffer!\n");
+        ++gstats.nfail;
+        gstats.fail_size += sz;
+        return nullptr;
+    }
     if(default_buffer.pos % sizeof(max_align_t) != 0){
         default_buffer.pos = (default_buffer.pos + sizeof(max_align_t) - 1) & ~(sizeof(max_align_t) - 1);
     }
@@ -80,6 +96,10 @@ void* m61_malloc(size_t sz, const char* file, int line) {
     return ptr;
 }
 
+static void* m61_find_free_space(size_t sz) {
+    for()
+}
+
 
 /// m61_free(ptr, file, line)
 ///    Frees the memory allocation pointed to by `ptr`. If `ptr == nullptr`,
@@ -95,7 +115,7 @@ void m61_free(void* ptr, const char* file, int line) {
     if(ptr != nullptr && gstats.nactive > 0){
         gstats.nactive = gstats.nactive - 1;
     }
-    freed_sizes[ptr] = active_sizes[ptr];
+    free_sizes[ptr] = active_sizes[ptr];
     gstats.active_size = gstats.active_size - active_sizes[ptr];
     active_sizes.erase(ptr);
 }
