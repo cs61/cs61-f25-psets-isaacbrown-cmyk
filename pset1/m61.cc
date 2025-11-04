@@ -117,9 +117,11 @@ void m61_free(void* ptr, const char* file, int line) {
 void* m61_calloc(size_t count, size_t sz, const char* file, int line) {
     // Your code here (not needed for first tests)
     if(count > default_buffer.size){
+        ++gstats.nfail;
         return nullptr;
     }
     if(sz > default_buffer.size){
+        ++gstats.nfail;
         return nullptr;
     }
     void* ptr = m61_malloc(count * sz, file, line);
