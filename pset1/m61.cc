@@ -6,6 +6,7 @@
 #include <cinttypes>
 #include <cassert>
 #include <sys/mman.h>
+#include <map>
 
 static std::map<void*, size_t> active_sizes;
 
