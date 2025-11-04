@@ -6,7 +6,6 @@
 
 int main() {
     char* p = (char*) m61_malloc(10);
-
     m61_statistics stat = m61_get_statistics();
     fprintf(stdout, "Heap max: %ld, Heap min: %ld\n", stat.heap_max, stat.heap_min);
     fprintf(stdout, "Returned ptr: %s\n",p);
