@@ -7,7 +7,6 @@
 #include <cassert>
 #include <sys/mman.h>
 #include <map>
-#include <iostream>
 
 static std::map<void*, size_t> active_sizes;
 static std::map<void*, size_t> freed_sizes;
@@ -75,16 +74,11 @@ static void* m61_find_free_space(size_t sz) {
         return nullptr;
     }
     for(auto const & [k,v]: freed_sizes){
-        //fprintf(stdout,"Freed sizes at start of loop: %ld\n",freed_sizes.size());
         if(v >= sz){
             freed_sizes.erase(k);
-            //fprintf(stdout,"Reused memory!\n");
             return k;
         }
-        //fprintf(stdout, "Memory block not big enough!\n");
-        //std::cout << "Pointer: " << k << " Size of allocation: \n" << v << std::endl;
     }
-    //fprintf(stdout,"No reusable memory found!\n");
     return nullptr;
 }
 
@@ -95,9 +89,6 @@ void* m61_malloc(size_t sz, const char* file, int line) {
         default_buffer.pos = (default_buffer.pos + sizeof(max_align_t) - 1) & ~(sizeof(max_align_t) - 1);
     }
     void *ptr = m61_find_free_space(sz);
-    if(ptr == nullptr){
-        return ptr;
-    }
     // Otherwise there is enough space; claim the next `sz` bytes
     ++gstats.ntotal;
     gstats.total_size += sz;
@@ -130,8 +121,7 @@ void m61_free(void* ptr, const char* file, int line) {
     if(ptr != nullptr && gstats.nactive > 0){
         gstats.nactive = gstats.nactive - 1;
     }
-    size_t temp = active_sizes[ptr];
-    freed_sizes[ptr] = temp;
+    freed_sizes[ptr] = active_sizes[ptr];
     gstats.active_size = gstats.active_size - active_sizes[ptr];
     active_sizes.erase(ptr);
 }
