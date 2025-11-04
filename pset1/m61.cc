@@ -115,10 +115,7 @@ void m61_free(void* ptr, const char* file, int line) {
 ///    also return `nullptr` if `count == 0` or `size == 0`.
 
 void* m61_calloc(size_t count, size_t sz, const char* file, int line) {
-    // Your code here (not needed for first tests).
-    fprintf(stdout,"Count is %lu\n",count);
-    fprintf(stdout,"Size is %lu\n",sz);
-    fprintf(stdout, "count * sz is %lu\n",count*sz);
+    // Your code here (not needed for first tests)
     if(count > default_buffer.size){
         return nullptr;
     }
@@ -127,7 +124,6 @@ void* m61_calloc(size_t count, size_t sz, const char* file, int line) {
     }
     void* ptr = m61_malloc(count * sz, file, line);
     if (ptr) {
-        fprintf(stdout, "m61_calloc's ptr is not null!\n");
         memset(ptr, 0, count * sz);
     }
     return ptr;
