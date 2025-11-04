@@ -93,7 +93,7 @@ void* m61_malloc(size_t sz, const char* file, int line) {
     ++gstats.ntotal;
     gstats.total_size += sz;
     ++gstats.nactive;
-    void* ptr = &default_buffer.buffer[default_buffer.pos];
+    ptr = &default_buffer.buffer[default_buffer.pos];
     if(gstats.heap_min == 0 || (uintptr_t) ptr <= gstats.heap_min){
         gstats.heap_min = (uintptr_t) ptr;
     }
