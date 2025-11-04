@@ -127,7 +127,8 @@ void m61_free(void* ptr, const char* file, int line) {
     if(ptr != nullptr && gstats.nactive > 0){
         gstats.nactive = gstats.nactive - 1;
     }
-    freed_sizes[ptr] = active_sizes[ptr];
+    size_t temp = active_sizes[ptr];
+    freed_sizes[ptr] = temp;
     gstats.active_size = gstats.active_size - active_sizes[ptr];
     active_sizes.erase(ptr);
 }
