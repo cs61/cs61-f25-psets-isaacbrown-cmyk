@@ -55,21 +55,16 @@ m61_memory_buffer::~m61_memory_buffer() {
 void* m61_malloc(size_t sz, const char* file, int line) {
     (void) file, (void) line;   // avoid uninitialized variable warnings
     // Your code here.
-    if(sz > default_buffer.size){
+    if (default_buffer.pos + sz > default_buffer.size) {
+        // Not enough space left in default buffer for allocation
         ++gstats.nfail;
-        gstats.totalsize += sz;
+        gstats.fail_size += sz;
         return nullptr;
     }
     if(default_buffer.pos % sz != 0){
         while(default_buffer.pos % sz != 0){
             default_buffer.pos = default_buffer.pos + 1;
         }
-    }
-    if (default_buffer.pos + sz > default_buffer.size) {
-        // Not enough space left in default buffer for allocation
-        ++gstats.nfail;
-        gstats.fail_size += sz;
-        return nullptr;
     }
     // Otherwise there is enough space; claim the next `sz` bytes
     ++gstats.ntotal;
