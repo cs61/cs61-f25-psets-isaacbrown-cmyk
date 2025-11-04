@@ -116,6 +116,8 @@ void m61_free(void* ptr, const char* file, int line) {
 
 void* m61_calloc(size_t count, size_t sz, const char* file, int line) {
     // Your code here (not needed for first tests).
+    fprintf(stdout,"Count is %lu\n",count);
+    fprintf(stdout,"Size is %lu\n",sz);
     fprintf(stdout, "count * sz is %ld\n",count*sz);
     void* ptr = m61_malloc(count * sz, file, line);
     if (ptr) {
