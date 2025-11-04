@@ -118,6 +118,7 @@ void* m61_calloc(size_t count, size_t sz, const char* file, int line) {
     // Your code here (not needed for first tests).
     void* ptr = m61_malloc(count * sz, file, line);
     if (ptr) {
+        fprintf(stdout, "m61_calloc's ptr is not null!"\n);
         memset(ptr, 0, count * sz);
     }
     return ptr;
