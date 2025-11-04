@@ -72,11 +72,11 @@ void* m61_malloc(size_t sz, const char* file, int line) {
     if(default_buffer.pos % sizeof(max_align_t) != 0){
         default_buffer.pos = (default_buffer.pos + sizeof(max_align_t) - 1) & ~(sizeof(max_align_t) - 1);
     }
-    if(heap_min == 0 || default_buffer.pos <= heap_min){
-        heap_min = default_buffer.pos;
+    if(gstats.heap_min == 0 || default_buffer.pos <= gstats.heap_min){
+        gstats.heap_min = default_buffer.pos;
     }
-    if(heap_max == 0 || default_buffer.pos + sz >= heap_max){
-        heap_max = default_buffer.pos + sz;
+    if(gstats.heap_max == 0 || default_buffer.pos + sz >= gstats.heap_max){
+        gstats.heap_max = default_buffer.pos + sz;
     }
     // Otherwise there is enough space; claim the next `sz` bytes
     ++gstats.ntotal;
