@@ -55,6 +55,11 @@ m61_memory_buffer::~m61_memory_buffer() {
 void* m61_malloc(size_t sz, const char* file, int line) {
     (void) file, (void) line;   // avoid uninitialized variable warnings
     // Your code here.
+    if(&default_buffer.buffer[default_buffer.pos] % std::max_align_t != 0){
+        while(&default_buffer.buffer[default_buffer.pos] % std::max_align_t != 0){
+            default_buffer.pos = default_buffer.pos + 1;
+        }
+    }
     if (default_buffer.pos + sz > default_buffer.size) {
         // Not enough space left in default buffer for allocation
         ++gstats.nfail;
@@ -68,7 +73,7 @@ void* m61_malloc(size_t sz, const char* file, int line) {
         return nullptr;
     }
     ++gstats.nactive;
-    void* ptr = alignas(std::max_align_t) &default_buffer.buffer[default_buffer.pos];
+    void* ptr = &default_buffer.buffer[default_buffer.pos];
     default_buffer.pos += sz;
     return ptr;
 }
