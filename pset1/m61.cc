@@ -7,7 +7,7 @@
 #include <cassert>
 #include <sys/mman.h>
 
-std::map<void*, size_t> active_sizes;
+static std::map<void*, size_t> active_sizes;
 
 static m61_statistics gstats = {
     .nactive = 0,
@@ -89,7 +89,7 @@ void* m61_malloc(size_t sz, const char* file, int line) {
     }
     default_buffer.pos += sz;
     active_sizes[ptr] = sz;
-    gstats.active_size = gstats.active_size += sz;
+    gstats.active_size = gstats.active_size + sz;
     return ptr;
 }
 
