@@ -7,9 +7,6 @@
 int main() {
     char* p = (char*) m61_malloc(10);
     m61_statistics stat = m61_get_statistics();
-    m61_print_statistics();
-    fprintf(stdout, "Heap max: %ld, Heap min: %ld\n", stat.heap_max, stat.heap_min);
-    fprintf(stdout, "Current pointer value: %ld\n", (uintptr_t) p);
     assert((uintptr_t) p >= stat.heap_min);
     assert((uintptr_t) p + 9 <= stat.heap_max);
     m61_free(p);
