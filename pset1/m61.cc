@@ -80,8 +80,8 @@ void* m61_malloc(size_t sz, const char* file, int line) {
     if(gstats.heap_min == 0 || default_buffer.pos <= gstats.heap_min){
         gstats.heap_min = default_buffer.pos;
     }
-    if(gstats.heap_max == 0 || default_buffer.pos + sz >= gstats.heap_max){
-        gstats.heap_max = default_buffer.pos + sz;
+    if(gstats.heap_max == 0 || default_buffer.pos + sz + 1>= gstats.heap_max){
+        gstats.heap_max = default_buffer.pos + sz + 1;
     }
     default_buffer.pos += sz;
     return ptr;
