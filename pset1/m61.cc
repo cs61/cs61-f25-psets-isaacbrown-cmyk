@@ -61,7 +61,7 @@ void* m61_malloc(size_t sz, const char* file, int line) {
         gstats.fail_size += sz;
         return nullptr;
     }
-    if(sz == 0){
+    if(sz == 0 || sz > default_buffer.size){
         return nullptr;
     }
     if(default_buffer.pos % sizeof(max_align_t) != 0){
