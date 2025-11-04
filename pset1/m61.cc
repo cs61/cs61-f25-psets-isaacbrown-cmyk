@@ -95,6 +95,9 @@ void* m61_malloc(size_t sz, const char* file, int line) {
         default_buffer.pos = (default_buffer.pos + sizeof(max_align_t) - 1) & ~(sizeof(max_align_t) - 1);
     }
     void *ptr = m61_find_free_space(sz);
+    if(ptr == nullptr){
+        return ptr;
+    }
     // Otherwise there is enough space; claim the next `sz` bytes
     ++gstats.ntotal;
     gstats.total_size += sz;
