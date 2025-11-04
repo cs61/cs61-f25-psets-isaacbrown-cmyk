@@ -77,8 +77,10 @@ static void* m61_find_free_space(size_t sz) {
         if(v >= sz){
             freed_sizes.erase(k);
             return k;
+            fprintf(stdout,"Reused memory!\n");
         }
     }
+    fprintf(stdout,"No reusable memory found!\n");
     return nullptr;
 }
 
