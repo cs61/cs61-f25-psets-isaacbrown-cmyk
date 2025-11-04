@@ -86,7 +86,6 @@ void* m61_malloc(size_t sz, const char* file, int line) {
         gstats.heap_max = ((uintptr_t) ptr) + sz;
     }
     default_buffer.pos += sz;
-    ptr = &default_buffer.buffer[default_buffer.pos];
     return ptr;
 }
 
