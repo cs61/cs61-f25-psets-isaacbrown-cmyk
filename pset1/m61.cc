@@ -65,9 +65,7 @@ void* m61_malloc(size_t sz, const char* file, int line) {
         return nullptr;
     }
     if(default_buffer.pos % sz != 0){
-        while(default_buffer.pos % sz != 0){
-            default_buffer.pos = default_buffer.pos + 1;
-        }
+        default_buffer.pos = default_buffer.pos + sz - 1;
     }
     // Otherwise there is enough space; claim the next `sz` bytes
     ++gstats.ntotal;
