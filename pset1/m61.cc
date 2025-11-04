@@ -79,11 +79,11 @@ void* m61_malloc(size_t sz, const char* file, int line) {
     gstats.total_size += sz;
     ++gstats.nactive;
     void* ptr = &default_buffer.buffer[default_buffer.pos];
-    if(gstats.heap_min == 0 || default_buffer.pos <= gstats.heap_min){
-        gstats.heap_min = default_buffer.pos;
+    if(gstats.heap_min == 0 || (uintptr_t) ptr <= gstats.heap_min){
+        gstats.heap_min = (uintptr_t) ptr;
     }
-    if(gstats.heap_max == 0 || default_buffer.pos + sz + 1>= gstats.heap_max){
-        gstats.heap_max = default_buffer.pos + sz + 1;
+    if(gstats.heap_max == 0 || (uintptr_t) ptr + sz >= gstats.heap_max){
+        gstats.heap_max = ((uintptr_t) ptr) + sz;
     }
     default_buffer.pos += sz;
     ptr = &default_buffer.buffer[default_buffer.pos];
