@@ -73,7 +73,7 @@ static void* m61_find_free_space(size_t sz) {
         gstats.fail_size += sz;
         return nullptr;
     }
-    for(const auto & a: freed_sizes){
+    for(const auto &a: freed_sizes){
         if(freed_sizes[a] >= sz){
             void *ptr = freed_sizes[a][0];
             freed_sizes.erase(a);
