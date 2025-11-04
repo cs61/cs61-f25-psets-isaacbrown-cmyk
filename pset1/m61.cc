@@ -77,7 +77,7 @@ static void* m61_find_free_space(size_t sz) {
     for(auto const & [k,v]: freed_sizes){
         if(v >= sz){
             freed_sizes.erase(k);
-            fprintf(stdout,"Reused memory!\n");
+            //fprintf(stdout,"Reused memory!\n");
             return k;
         }
         fprintf(stdout, "Memory block not big enough!\n");
