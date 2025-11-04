@@ -7,6 +7,8 @@
 #include <cassert>
 #include <sys/mman.h>
 
+std::map<void*, size_t> active_sizes;
+
 static m61_statistics gstats = {
     .nactive = 0,
     .active_size = 0,
