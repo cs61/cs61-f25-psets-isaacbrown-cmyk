@@ -75,7 +75,7 @@ static void* m61_find_free_space(size_t sz) {
         return nullptr;
     }
     for(auto const & [k,v]: freed_sizes){
-        fprintf(stdout,"Freed sizes at start of loop: %lld\n",freed_sizes.size());
+        fprintf(stdout,"Freed sizes at start of loop: %ld\n",freed_sizes.size());
         if(v >= sz){
             freed_sizes.erase(k);
             //fprintf(stdout,"Reused memory!\n");
