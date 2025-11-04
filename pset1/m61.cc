@@ -78,6 +78,7 @@ void* m61_malloc(size_t sz, const char* file, int line) {
     if(default_buffer.pos % sizeof(max_align_t) != 0){
         default_buffer.pos = (default_buffer.pos + sizeof(max_align_t) - 1) & ~(sizeof(max_align_t) - 1);
     }
+    fprintf(stdout,"There is enough space \n");
     // Otherwise there is enough space; claim the next `sz` bytes
     ++gstats.ntotal;
     gstats.total_size += sz;
