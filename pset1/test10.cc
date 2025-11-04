@@ -9,7 +9,7 @@ int main() {
     m61_statistics stat = m61_get_statistics();
     fprintf(stdout, "Heap max: %ld, Heap min: %ld\n", stat.heap_max, stat.heap_min);
     if(p == nullptr){
-        fprintf(stdout, "Returned ptr: %s\n",p);
+        fprintf(stdout, "Malloc returned null ptr");
     }
     assert((uintptr_t) p >= stat.heap_min);
     assert((uintptr_t) p + 9 <= stat.heap_max);
