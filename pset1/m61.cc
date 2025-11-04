@@ -57,6 +57,7 @@ m61_memory_buffer::~m61_memory_buffer() {
 ///    The allocation request was made at source code location `file`:`line`.
 
 static void* m61_find_free_space(size_t sz) {
+    fprintf(stdout,"Provided size: %ld\n",sz);
     if (default_buffer.pos + sz > default_buffer.size) {
         // Not enough space left in default buffer for allocation
         //fprintf(stdout, "Not enough space left!\n");
