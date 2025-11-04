@@ -75,9 +75,8 @@ static void* m61_find_free_space(size_t sz) {
     }
     for(auto const & [k,v]: freed_sizes){
         if(v >= sz){
-            void *ptr = k;
             freed_sizes.erase(k);
-            return ptr;
+            return k;
         }
     }
     return nullptr;
