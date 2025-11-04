@@ -78,8 +78,8 @@ static void* m61_find_free_space(size_t sz) {
         fprintf(stdout,"Loop started!\n");
         if(v >= sz){
             freed_sizes.erase(k);
-            return k;
             fprintf(stdout,"Reused memory!\n");
+            return k;
         }
         fprintf(stdout, "Memory block not big enough!\n");
         std::cout << "Pointer: " << k << " Size of allocation: \n" << v << std::endl;
