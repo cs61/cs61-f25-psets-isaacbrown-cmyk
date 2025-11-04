@@ -75,7 +75,7 @@ static void* m61_find_free_space(size_t sz) {
         return nullptr;
     }
     for(auto const & [k,v]: freed_sizes){
-        std::cout << "Key: " << k << " Value: " << v << std::endl;
+        std::cout << "Pointer: " << k << " Size of allocation: \n" << v << std::endl;
         if(v >= sz){
             freed_sizes.erase(k);
             return k;
